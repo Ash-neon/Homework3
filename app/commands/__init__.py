@@ -1,4 +1,7 @@
 from abc import ABC, abstractmethod
+from decimal import Decimal, InvalidOperation
+import sys
+
 
 class Command(ABC):
     @abstractmethod
@@ -13,14 +16,27 @@ class CommandHandler:
         self.commands[command_name] = command
 
     def execute_command(self, command_name: str):
-        """ Look before you leap (LBYL) - Use when its less likely to work
-        if command_name in self.commands:
-            self.commands[command_name].execute()
-        else:
-            print(f"No such command: {command_name}")
-        """
-        """Easier to ask for forgiveness than permission (EAFP) - Use when its going to most likely work"""
+
+        if command_name == "exit":
+            print("Exiting the program. Goodbye!")
+            sys.exit(0)
         try:
-            self.commands[command_name].execute()
+            command = self.commands[command_name]
+            if command_name in ['add', 'subtract', 'multiply', 'divide']:
+                a = Decimal(input("Enter first number: "))
+                b = Decimal(input("Enter second number: "))
+                command.execute(a, b)
+            else:
+                command.execute()
+
         except KeyError:
             print(f"No such command: {command_name}")
+        except InvalidOperation:
+            print("Invalid input. Please enter a valid number.")
+        
+    
+        
+
+    def get_command_names(self):
+        """Return a list of registered command names."""
+        return list(self.commands.keys())

@@ -3,6 +3,7 @@ from app.commands.add import AddCommand
 from app.commands.subtract import SubtractCommand
 from app.commands.multiply import MultiplyCommand
 from app.commands.divide import DivideCommand
+from app.commands.menu import MenuCommand
 
 class App:
     def __init__(self): # Constructor
@@ -20,5 +21,10 @@ class App:
         self.command_handler.register_command("menu", menu_command)
 
         print("Type 'exit' to exit.")
-        while True:  #REPL Read, Evaluate, Print, Loop
-            self.command_handler.execute_command(input(">>> ").strip())
+        while True:  
+            user_input = input(">>> ").strip()
+            if user_input == 'exit':
+                print("Exiting the program. Goodbye!")
+                return True  # Indicates that the program should exit
+            self.command_handler.execute_command(user_input)
+        return False  # This line is not necessary, but included for clarity

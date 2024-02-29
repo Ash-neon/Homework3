@@ -35,5 +35,5 @@ def main():
     calculate_and_print(a, b, operation)
 
 if __name__ == '__main__':
-    app = App().start()
-    main()
+    App().start()
+    #main()
