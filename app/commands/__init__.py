@@ -1,7 +1,11 @@
+import logging
 from abc import ABC, abstractmethod
 from decimal import Decimal, InvalidOperation
 import sys
 
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class Command(ABC):
     @abstractmethod
@@ -16,7 +20,6 @@ class CommandHandler:
         self.commands[command_name] = command
 
     def execute_command(self, command_name: str):
-
         if command_name == "exit":
             print("Exiting the program. Goodbye!")
             sys.exit(0)
@@ -31,12 +34,11 @@ class CommandHandler:
 
         except KeyError:
             print(f"No such command: {command_name}")
+            logger.error(f"No such command: {command_name}")
         except InvalidOperation:
             print("Invalid input. Please enter a valid number.")
-        
+            logger.error("Invalid input. Please enter a valid number.")
     
-        
-
     def get_command_names(self):
         """Return a list of registered command names."""
         return list(self.commands.keys())
