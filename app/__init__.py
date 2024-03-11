@@ -61,9 +61,6 @@ class App:
                 self.command_handler.register_command(plugin_name, item())
                 logging.info(f"Command '{plugin_name}' from plugin '{plugin_name}' registered.")
 
-    '''def exit_command(self):
-        logging.info("Exiting the program. Goodbye!")
-        return True '''
     
     def start(self):
         self.load_plugins()
