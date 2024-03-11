@@ -1,5 +1,5 @@
 import logging
-from app.Plugin import Command
+from app.command import Command
 from calculator.operations import multiply
 from decimal import Decimal
 import multiprocessing
