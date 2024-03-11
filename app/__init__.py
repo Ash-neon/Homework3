@@ -1,11 +1,11 @@
 import sys
 import logging
-from app.commands import CommandHandler
-from app.commands.add import AddCommand
-from app.commands.subtract import SubtractCommand
-from app.commands.multiply import MultiplyCommand
-from app.commands.divide import DivideCommand
-from app.commands.menu import MenuCommand
+from app.command import CommandHandler
+from app.Plugin.add import AddCommand
+from app.Plugin.subtract import SubtractCommand
+from app.Plugin.multiply import MultiplyCommand
+from app.Plugin.divide import DivideCommand
+from app.Plugin.menu import MenuCommand
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, stream=sys.stdout)

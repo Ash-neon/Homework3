@@ -1,10 +1,10 @@
 from app import App
-from app.commands.menu import MenuCommand
+from app.Plugin.menu import MenuCommand
 from decimal import Decimal
-from app.commands.add import AddCommand
-from app.commands.subtract import SubtractCommand
-from app.commands.multiply import MultiplyCommand
-from app.commands.divide import DivideCommand
+from app.Plugin.add import AddCommand
+from app.Plugin.subtract import SubtractCommand
+from app.Plugin.multiply import MultiplyCommand
+from app.Plugin.divide import DivideCommand
 
 def test_add_command(capfd):
     command = AddCommand()

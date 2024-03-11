@@ -1,5 +1,5 @@
 #import logging
-from app.commands import Command
+from app.Plugin import Command
 
 class MenuCommand(Command):
     def __init__(self, commands):
