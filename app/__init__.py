@@ -77,8 +77,6 @@ class App:
         menu_command = MenuCommand(self.command_handler.get_command_names())
         self.command_handler.register_command("menu", menu_command)
         
-        #self.command_handler.register_command("exit", self.exit_command)
-
         while True:
             user_input = input(">>> ").strip()
             if user_input == 'exit':
