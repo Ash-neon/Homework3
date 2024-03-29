@@ -29,6 +29,8 @@ class CommandHandler:
                 a = Decimal(input("Enter first number: "))
                 b = Decimal(input("Enter second number: "))
                 command.execute(a, b)
+            elif command_name == 'history':
+                command.execute()
             else:
                 command.execute()
 

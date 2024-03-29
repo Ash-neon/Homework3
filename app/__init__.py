@@ -1,13 +1,14 @@
 import os
-import sys
 import pkgutil
 import importlib
 from app.command import CommandHandler, Command  # Make sure this import matches your project structure
+from history.history_manager import HistoryManager
 from app.Plugin.add import AddCommand
 from app.Plugin.subtract import SubtractCommand
 from app.Plugin.multiply import MultiplyCommand
 from app.Plugin.divide import DivideCommand
 from app.Plugin.menu import MenuCommand
+from app.Plugin.history import HistoryCommand
 from dotenv import load_dotenv
 import logging
 import logging.config
@@ -66,10 +67,21 @@ class App:
         self.load_plugins()
         logging.info("Application started. Type 'exit' to exit.")
         logging.info("Type 'menu' for MENU.")
-        self.command_handler.register_command("add", AddCommand())
-        self.command_handler.register_command("subtract", SubtractCommand())
-        self.command_handler.register_command("multiply", MultiplyCommand())
-        self.command_handler.register_command("divide", DivideCommand())
+        
+        history_manager = HistoryManager()
+
+        # Instantiate HistoryCommand with the history_manager argument
+        history_command = HistoryCommand(history_manager)
+
+        # Register the HistoryCommand
+        self.command_handler.register_command("history", history_command)
+         
+        # Pass HistoryManager instance to commands that require it
+        self.command_handler.register_command("add", AddCommand(history_manager))
+        self.command_handler.register_command("subtract", SubtractCommand(history_manager))
+        self.command_handler.register_command("multiply", MultiplyCommand(history_manager))
+        self.command_handler.register_command("divide", DivideCommand(history_manager))
+        self.command_handler.register_command("history", HistoryCommand(history_manager))
 
         menu_command = MenuCommand(self.command_handler.get_command_names())
         self.command_handler.register_command("menu", menu_command)
