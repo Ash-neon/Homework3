@@ -5,35 +5,30 @@ from app.Plugin.add import AddCommand
 from app.Plugin.subtract import SubtractCommand
 from app.Plugin.multiply import MultiplyCommand
 from app.Plugin.divide import DivideCommand
-from history.history_manager import HistoryManager
 
 def test_add_command(capfd):
-    history_manager = HistoryManager()
-    command = AddCommand(history_manager)  # Pass the history_manager instance
+    command = AddCommand()
     # Assuming execute now takes two parameters, and prints the result
     command.execute(Decimal('5'), Decimal('3'))
     out, err = capfd.readouterr()
     assert out.strip() == "The result of adding 5 and 3 is 8", "The AddCommand should print the correct result"
 
 def test_subtract_command(capfd):
-    history_manager = HistoryManager()
-    command = SubtractCommand(history_manager)  # Pass the history_manager instance
+    command = SubtractCommand()
     # Assuming execute now takes two parameters, and prints the result
     command.execute(Decimal('5'), Decimal('3'))
     out, err = capfd.readouterr()
     assert out.strip() == "The result of subtracting 3 from 5 is 2", "The SubtractCommand should print the correct result"
 
 def test_multiply_command(capfd):
-    history_manager = HistoryManager()
-    command = MultiplyCommand(history_manager)  # Pass the history_manager instance
+    command = MultiplyCommand()
     # Assuming execute now takes two parameters, and prints the result
     command.execute(Decimal('5'), Decimal('3'))
     out, err = capfd.readouterr()
     assert out.strip() == "The result of multiplying 5 and 3 is 15", "The MultiplyCommand should print the correct result"
 
 def test_divide_command(capfd):
-    history_manager = HistoryManager()
-    command = DivideCommand(history_manager)  # Pass the history_manager instance
+    command = DivideCommand()
     # Assuming execute now takes two parameters, and prints the result
     command.execute(Decimal('6'), Decimal('2'))
     out, err = capfd.readouterr()

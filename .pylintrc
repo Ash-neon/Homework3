@@ -7,8 +7,8 @@ load-plugins=pylint_django
 [MESSAGES CONTROL]
 # Only show these errors
 # Disable the following checks (example list):
-disable= unused-argument
-         line-too-long
+disable= unused-argument,
+         line-too-long,
          redefined-outer-name
 
 [REPORTS]
@@ -49,3 +49,5 @@ method-rgx=[a-z_][a-z0-9_]{2,50}$
 
 # Module names should have short, all-lowercase names. The use of underscores is discouraged.
 module-rgx=[a-z_][a-z0-9_]{1,30}$
+
+# Class names
